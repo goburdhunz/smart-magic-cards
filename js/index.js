@@ -38,16 +38,18 @@ function createCard(array) {
   });
 }
 
-
+// Function to shuffle cards and then call createCard with the shuffledList as an argument
 function shuffleAction() {
   const shuffledList = cards.slice().sort(() => Math.random() - 0.5);
   return createCard(shuffledList);
 }
 
+// Collect the nodeslist of the car wrapper and add the .hidden class to each
 function showAndHide() {
   cardList.forEach((card) => card.classList.toggle('hidden'));
 }
 
+// Call createCard wuth the original cards array as an argument
 function magicMove() {
   return createCard(cards);
 }
@@ -55,7 +57,7 @@ function magicMove() {
 
 // Function to clear out the initial button and create new buttons to play the game.
 function createButtons() {
-  startButton.style.display = 'none';
+  startButton.remove();
 
   shuffleButton.setAttribute('type', 'button');
   shuffleButton.innerHTML = 'Shuffle';
@@ -63,7 +65,6 @@ function createButtons() {
   shuffleButton.style.marginRight = '20px';
   buttonWrapper.append(shuffleButton);
   shuffleButton.addEventListener('click', shuffleAction);
-
 
   showHideButton.setAttribute('type', 'button');
   showHideButton.innerHTML = 'Show/Hide';
