@@ -5,10 +5,10 @@ const buttonWrapper = document.querySelector('.btn-wrapper');
 const startButton = document.querySelector('#start-game');
 const cardList = document.querySelectorAll('.cards-wrapper');
 
-
-const shuffleButton = document.createElement('Button');
-const showHideButton = document.createElement('Button');
-const magicButton = document.createElement('Button');
+const buttons = ['Shuffle', 'Show/Hide', 'Magic'];
+// const shuffleButton = document.createElement('Button');
+// const showHideButton = document.createElement('Button');
+// const magicButton = document.createElement('Button');
 
 
 const cards = [];
@@ -58,26 +58,43 @@ function magicMove() {
 // Function to clear out the initial button and create new buttons to play the game.
 function createButtons() {
   startButton.remove();
+  buttons.forEach((btn) => {
+    const button = document.createElement('Button');
+    button.setAttribute('type', 'button');
+    button.classList.add('btn', 'btn-lg', 'btn-secondary');
+    button.style.marginRight = '20px';
+    button.innerHTML = `${btn}`;
+    buttonWrapper.append(button);
 
-  shuffleButton.setAttribute('type', 'button');
-  shuffleButton.innerHTML = 'Shuffle';
-  shuffleButton.classList.add('btn', 'btn-lg', 'btn-secondary');
-  shuffleButton.style.marginRight = '20px';
-  buttonWrapper.append(shuffleButton);
-  shuffleButton.addEventListener('click', shuffleAction);
+    if (button.innerHTML === 'Shuffle') {
+      button.addEventListener('click', shuffleAction);
+    } else if (button.innerHTML === 'Show/Hide') {
+      button.addEventListener('click', showAndHide);
+    } else {
+      button.addEventListener('click', magicMove);
+    }
+  });
 
-  showHideButton.setAttribute('type', 'button');
-  showHideButton.innerHTML = 'Show/Hide';
-  showHideButton.classList.add('btn', 'btn-lg', 'btn-secondary');
-  showHideButton.style.marginRight = '20px';
-  buttonWrapper.append(showHideButton);
-  showHideButton.addEventListener('click', showAndHide);
 
-  magicButton.setAttribute('type', 'button');
-  magicButton.innerHTML = 'Magic';
-  magicButton.classList.add('btn', 'btn-lg', 'btn-secondary');
-  buttonWrapper.append(magicButton);
-  magicButton.addEventListener('click', magicMove);
+// shuffleButton.setAttribute('type', 'button');
+  // shuffleButton.innerHTML = 'Shuffle';
+  // shuffleButton.classList.add('btn', 'btn-lg', 'btn-secondary');
+  // shuffleButton.style.marginRight = '20px';
+  // buttonWrapper.append(shuffleButton);
+  // shuffleButton.addEventListener('click', shuffleAction);
+  //
+  // showHideButton.setAttribute('type', 'button');
+  // showHideButton.innerHTML = 'Show/Hide';
+  // showHideButton.classList.add('btn', 'btn-lg', 'btn-secondary');
+  // showHideButton.style.marginRight = '20px';
+  // buttonWrapper.append(showHideButton);
+  // showHideButton.addEventListener('click', showAndHide);
+  //
+  // magicButton.setAttribute('type', 'button');
+  // magicButton.innerHTML = 'Magic';
+  // magicButton.classList.add('btn', 'btn-lg', 'btn-secondary');
+  // buttonWrapper.append(magicButton);
+  // magicButton.addEventListener('click', magicMove);
 }
 
 
